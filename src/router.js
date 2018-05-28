@@ -1,15 +1,18 @@
-import React from 'react';
-import { Router, Route, Switch } from 'dva/router';
-import IndexPage from './routes/IndexPage';
+import React from 'react'
+import { Router, Route, Switch } from 'dva/router'
 
-function RouterConfig({ history }) {
+import Home from './pages/Home/Home'
+import LogIn from './pages/LogIn/LogIn'
+
+
+export default ({ history }) => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" exact component={IndexPage} />
+        <Route path="/" exact component={Home} />
+        <Route path="/login" component={LogIn} />
+        {/* <Route path="/register" component={Register} /> */}
       </Switch>
     </Router>
-  );
+  )
 }
-
-export default RouterConfig;

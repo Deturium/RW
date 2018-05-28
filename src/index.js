@@ -1,8 +1,15 @@
-import dva from 'dva';
-import './index.css';
+import dva from 'dva'
+import createBrowserHistory from 'history/createBrowserHistory'
+
+import React from 'react'
+import { render } from 'react-dom'
+
+import './index.css'
 
 // 1. Initialize
-const app = dva();
+const app = dva({
+  history: createBrowserHistory()
+})
 
 // 2. Plugins
 // app.use({});
@@ -11,7 +18,20 @@ const app = dva();
 // app.model(require('./models/example').default);
 
 // 4. Router
-app.router(require('./router').default);
+app.router(require('./router').default)
 
 // 5. Start
-app.start('#root');
+const App = app.start()
+
+const root = document.getElementById('root')
+
+if (process.env.NODE_ENV === 'development') {
+  const RedBox = require('redbox-react').default
+  try {
+    render(<App />, root)
+  } catch (e) {
+    render(<RedBox error={e} />, root)
+  }
+} else {
+  render(<App />, root)
+}
