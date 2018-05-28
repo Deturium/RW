@@ -24,6 +24,7 @@ const commom = {
       },
       {
         test: /\.css$/,
+        exclude: /node_modules/,
         use: [
           'style-loader',
           {
@@ -33,6 +34,21 @@ const commom = {
               localIdentName: '[local]_[hash:5]'
             }
           }
+        ]
+      },
+      {
+        test: /\.less$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]_[hash:5]'
+            }
+          },
+          'less-loader'
         ]
       },
 
