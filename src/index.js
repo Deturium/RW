@@ -4,7 +4,7 @@ import createBrowserHistory from 'history/createBrowserHistory'
 import React from 'react'
 import { render } from 'react-dom'
 
-import './index.css'
+import './index.less'
 
 // 1. Initialize
 const app = dva({
