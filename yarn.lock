@@ -222,7 +222,7 @@
     "@babel/helper-replace-supers" "7.0.0-beta.49"
     "@babel/plugin-syntax-class-properties" "7.0.0-beta.49"
 
-"@babel/plugin-proposal-decorators@7.0.0-beta.49", "@babel/plugin-proposal-decorators@^7.0.0-beta.49":
+"@babel/plugin-proposal-decorators@7.0.0-beta.49":
   version "7.0.0-beta.49"
   resolved "http://registry.npm.taobao.org/@babel/plugin-proposal-decorators/download/@babel/plugin-proposal-decorators-7.0.0-beta.49.tgz#5760ab683174e60ad670dc9c5ef39f1d7d349c7b"
   dependencies:
@@ -3040,9 +3040,9 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-dva-core@^1.2.1:
-  version "1.2.1"
-  resolved "http://registry.npm.taobao.org/dva-core/download/dva-core-1.2.1.tgz#677f74b42b5b41c9263eebca0f139e8736196fca"
+dva-core@^1.3.0:
+  version "1.3.0"
+  resolved "http://registry.npm.taobao.org/dva-core/download/dva-core-1.3.0.tgz#997ce4f0c678b1b694205559466d4e1c47065238"
   dependencies:
     "@babel/runtime" "^7.0.0-beta.34"
     flatten "^1.0.2"
@@ -3053,15 +3053,15 @@ dva-core@^1.2.1:
     redux-saga "^0.16.0"
     warning "^3.0.0"
 
-dva@^2.2.3:
-  version "2.2.3"
-  resolved "http://registry.npm.taobao.org/dva/download/dva-2.2.3.tgz#9b452c080c6988f192f3b4d6b2f1ea44fa4d97de"
+dva@^2.3.0:
+  version "2.3.0"
+  resolved "http://registry.npm.taobao.org/dva/download/dva-2.3.0.tgz#0f5072476446399e49042996b54f2f3f505666d9"
   dependencies:
     "@babel/runtime" "^7.0.0-beta.34"
     "@types/isomorphic-fetch" "^0.0.34"
     "@types/react-router" "^4.0.23"
     "@types/react-router-redux" "^5.0.13"
-    dva-core "^1.2.1"
+    dva-core "^1.3.0"
     global "^4.3.2"
     history "^4.6.3"
     invariant "^2.2.2"
