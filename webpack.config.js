@@ -1,7 +1,7 @@
 const path = require('path')
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-// const ExtractTextPlugin = require("extract-text-webpack-plugin")
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const merge = require("webpack-merge")
 
 const commom = {
@@ -25,6 +25,13 @@ const commom = {
           cacheDirectory: true,
         },
       },
+      // {
+      //   test: /\.(png|jpg|gif|svg)$/,
+      //   loader: 'url-loader',
+      //   options: {
+      //     limit: 8192
+      //   },
+      // },
       {
         test: /\.less$/,
         exclude: /node_modules/,
@@ -40,19 +47,9 @@ const commom = {
           'less-loader'
         ]
       },
-
-      // config babel-plugin-import for antd
-      {
-        test: /\.css$/,
-        include: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ]
-      },
       {
         test: /\.less$/,
-        include: /node_modules/,
+        include: /node_modules/, // for antd
         use: [
           'style-loader',
           'css-loader',

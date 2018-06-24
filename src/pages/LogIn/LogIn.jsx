@@ -22,7 +22,7 @@ export default class LoginForm extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit} className={styles['login-form']}>
         <Form.Item>
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
             <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
@@ -40,13 +40,12 @@ export default class LoginForm extends React.Component {
             valuePropName: 'checked',
             initialValue: true,
           })(
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox>自动登录</Checkbox>
           )}
-          <a className={styles['login-form-forgot']} href="">Forgot password</a>
+          <a className={styles['login-form-forgot']} href="">注册</a>
           <Button type="primary" htmlType="submit" className={styles['login-form-button']}>
-            Log in
+            登录
           </Button>
-          Or <a href="">register now!</a>
         </Form.Item>
       </Form>
     )
