@@ -11,7 +11,6 @@ export default ({ history }) => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/login" component={LogIn} />
-        {/* <Route path="/register" component={Register} /> */}
       </Switch>
     </Router>
   )

@@ -25,42 +25,13 @@ const commom = {
           cacheDirectory: true,
         },
       },
-      // {
-      //   test: /\.(png|jpg|gif|svg)$/,
-      //   loader: 'url-loader',
-      //   options: {
-      //     limit: 8192
-      //   },
-      // },
       {
-        test: /\.less$/,
-        exclude: /node_modules/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[local]_[hash:5]'
-            }
-          },
-          'less-loader'
-        ]
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 4096,
+        },
       },
-      {
-        test: /\.less$/,
-        include: /node_modules/, // for antd
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'less-loader',
-            options: {
-              javascriptEnabled: true
-            }
-          },
-        ]
-      }
     ]
   },
 
@@ -84,8 +55,6 @@ if (process.env.NODE_ENV === 'development') {
 
     devtool: 'eval-source-map',
 
-    // webpack-dev-server config
-    // "--hot" and "--inline" should be passed in package.json to enable HMR
     devServer: {
       historyApiFallback: true,
       open: true,
@@ -105,16 +74,6 @@ if (process.env.NODE_ENV === 'production') {
 
     optimization: {
       minimize: true,
-
-      splitChunks: {
-        cacheGroups: {
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all'
-          }
-        }
-      }
     },
   })
 }

@@ -1,53 +1,90 @@
 import React from 'react'
-import { Link } from 'dva/router'
+import { withStyles } from '@material-ui/core/styles'
 
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import Paper from '@material-ui/core/Paper'
 
-import styles from './Login.less'
+import Button from '@material-ui/core/Button'
+import Checkbox from '@material-ui/core/Checkbox'
+import Typography from '@material-ui/core/Typography'
 
-@Form.create()
+import TextField from '@material-ui/core/TextField'
+import FormGroup from '@material-ui/core/FormGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+
+
+const styles = theme => ({
+  container: {
+    width: 300,
+    margin: '100px auto',
+    padding: '50px 30px',
+  },
+  button: {
+    marginTop: 30,
+  }
+})
+
+@withStyles(styles)
 export default class LoginForm extends React.Component {
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values)
-      }
+  state = {
+    username: '',
+    password: '',
+    isRemember: false,
+  }
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    })
+  }
+
+  handleRemeber = () => {
+    this.setState({
+      isRemember: !this.state.isRemember
     })
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form
+    const { classes } = this.props
+    const { username, password, isRemember } = this.state
+
     return (
-      <Form onSubmit={this.handleSubmit} className={styles['login-form']}>
-        <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' }],
-          })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
-          )}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
-          })(
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-          )}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(
-            <Checkbox>自动登录</Checkbox>
-          )}
-          <a className={styles['login-form-forgot']} href="">注册</a>
-          <Button type="primary" htmlType="submit" className={styles['login-form-button']}>
-            登录
+      <Paper className={classes.container}>
+      <form noValidate autoComplete="off">
+        <FormGroup>
+          <Typography align="center" variant="title">
+            {"RW"}
+          </Typography>
+          <TextField
+            id="username"
+            label="username"
+            value={username}
+            onChange={this.handleChange('username')}
+            margin="normal"
+          />
+          <TextField
+            id="password"
+            label="password"
+            type="password"
+            value={password}
+            onChange={this.handleChange('password')}
+            margin="normal"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={isRemember}
+                onChange={this.handleRemeber}
+              />
+            }
+            label="Remember me"
+          />
+          <Button variant="contained" color="primary" className={classes.button}>
+            LOGIN
           </Button>
-        </Form.Item>
-      </Form>
+        </FormGroup>
+      </form>
+      </Paper>
     )
   }
 }

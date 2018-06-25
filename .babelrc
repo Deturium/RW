@@ -14,7 +14,6 @@
     "@babel/react"
   ],
   "plugins": [
-    "@babel/transform-runtime",
-    ["import", { "libraryName": "antd", "style": true }]
+    "@babel/transform-runtime"
   ]
 }

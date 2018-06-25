@@ -1,8 +1,8 @@
 import React from 'react'
-import { connect } from 'dva'
+// import { connect } from 'dva'
 
 
-@connect()
+// @connect()
 export default class Home extends React.PureComponent {
 
   static propTypes = {
@@ -11,7 +11,7 @@ export default class Home extends React.PureComponent {
 
   render() {
     return (
-      "hello"
+      "Home"
     )
   }
 }

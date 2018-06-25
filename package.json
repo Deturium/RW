@@ -5,8 +5,9 @@
     "build": "cross-env NODE_ENV=production webpack"
   },
   "dependencies": {
-    "antd": "^3.5.4",
-    "dva": "^2.3.0",
+    "@material-ui/core": "^1.2.3",
+    "@material-ui/icons": "^1.1.0",
+    "dva": "^2.3.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },
@@ -17,18 +18,14 @@
     "@babel/preset-react": "^7.0.0-beta.49",
     "@babel/preset-stage-1": "^7.0.0-beta.49",
     "babel-loader": "^8.0.0-beta",
-    "babel-plugin-import": "^1.7.0",
     "clean-webpack-plugin": "^0.1.19",
     "cross-env": "^5.1.6",
-    "css-loader": "^0.28.11",
     "html-webpack-plugin": "^3.2.0",
-    "less": "^3.0.4",
-    "less-loader": "^4.1.0",
     "redbox-react": "^1.6.0",
-    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
     "webpack": "^4.9.1",
     "webpack-cli": "^2.1.4",
     "webpack-dev-server": "^3.1.4",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.3"
   }
 }
