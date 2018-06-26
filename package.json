@@ -1,4 +1,8 @@
 {
+  "name": "recite-word",
+  "author": {
+    "name": "hydrogen"
+  },
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --hot --inline",
@@ -9,7 +13,8 @@
     "@material-ui/icons": "^1.1.0",
     "dva": "^2.3.1",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react-dom": "^16.4.0",
+    "styled-components": "^3.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.49",
@@ -18,6 +23,7 @@
     "@babel/preset-react": "^7.0.0-beta.49",
     "@babel/preset-stage-1": "^7.0.0-beta.49",
     "babel-loader": "^8.0.0-beta",
+    "babel-plugin-transform-imports": "^1.5.0",
     "clean-webpack-plugin": "^0.1.19",
     "cross-env": "^5.1.6",
     "html-webpack-plugin": "^3.2.0",

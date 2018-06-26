@@ -1,90 +1,57 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import styled from 'styled-components'
 
-import Paper from '@material-ui/core/Paper'
+import {
+  Paper,
+  AppBar,
+  Tabs,
+  Tab
+} from '@material-ui/core'
 
-import Button from '@material-ui/core/Button'
-import Checkbox from '@material-ui/core/Checkbox'
-import Typography from '@material-ui/core/Typography'
+import FormLogIn from './FormLogIn'
+import FormRegister from './FormRegister'
 
-import TextField from '@material-ui/core/TextField'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
+const Container = styled(Paper)`
+  max-width: 380px;
+  margin: auto;
 
-
-const styles = theme => ({
-  container: {
-    width: 300,
-    margin: '100px auto',
-    padding: '50px 30px',
-  },
-  button: {
-    marginTop: 30,
+  @media (min-width: 380px) {
+    margin-top: 16vh;
   }
-})
+`
 
-@withStyles(styles)
-export default class LoginForm extends React.Component {
+const FormContainer = styled.div`
+  padding: 60px 30px;
+`
+
+export default class extends React.Component {
 
   state = {
-    username: '',
-    password: '',
-    isRemember: false,
+    tabValue: 0,
   }
 
-  handleChange = name => event => {
+  handleTabChange = (_, value) => {
     this.setState({
-      [name]: event.target.value,
-    })
-  }
-
-  handleRemeber = () => {
-    this.setState({
-      isRemember: !this.state.isRemember
+      tabValue: value
     })
   }
 
   render() {
-    const { classes } = this.props
-    const { username, password, isRemember } = this.state
+    const { tabValue } = this.state
 
     return (
-      <Paper className={classes.container}>
-      <form noValidate autoComplete="off">
-        <FormGroup>
-          <Typography align="center" variant="title">
-            {"RW"}
-          </Typography>
-          <TextField
-            id="username"
-            label="username"
-            value={username}
-            onChange={this.handleChange('username')}
-            margin="normal"
-          />
-          <TextField
-            id="password"
-            label="password"
-            type="password"
-            value={password}
-            onChange={this.handleChange('password')}
-            margin="normal"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={isRemember}
-                onChange={this.handleRemeber}
-              />
-            }
-            label="Remember me"
-          />
-          <Button variant="contained" color="primary" className={classes.button}>
-            LOGIN
-          </Button>
-        </FormGroup>
-      </form>
-      </Paper>
+      <Container>
+        <AppBar position="static">
+          <Tabs value={tabValue} centered onChange={this.handleTabChange}>
+            <Tab label="Login" />
+            <Tab label="Register" />
+          </Tabs>
+        </AppBar>
+        <FormContainer>
+          { tabValue === 0 && <FormLogIn /> }
+          { tabValue === 1 && <FormRegister /> }
+        </FormContainer>
+      </Container>
     )
   }
 }

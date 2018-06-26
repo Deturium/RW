@@ -14,6 +14,12 @@
     "@babel/react"
   ],
   "plugins": [
-    "@babel/transform-runtime"
+    "@babel/transform-runtime",
+    ["transform-imports", {
+      "@material-ui/core": {
+          "transform": "@material-ui/core/${member}",
+          "preventFullImport": true
+      }
+    }]
   ]
 }
