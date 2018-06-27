@@ -12,9 +12,12 @@ import {
 import MainContainer from '../../components/MainContainer'
 
 import Home from './Home'
-// import Recite from './Recite'
+import Recite from './Recite'
+import Book from './Book'
+import Setting from './Setting'
 
 const StyledDiv = styled.div`
+  box-sizing: border-box;
   padding: 60px 30px;
 `
 
@@ -36,7 +39,6 @@ export default class extends React.PureComponent {
   }
 
   render() {
-    const { match } = this.props
     const { tabValue } = this.state
 
     return (
@@ -45,17 +47,17 @@ export default class extends React.PureComponent {
           <Tabs value={tabValue} centered onChange={this.handleTabChange}>
             <Tab label="Home" value="home" />
             <Tab label="Recite" value="recite" />
-            <Tab label="Review" value="review" />
+            <Tab label="Book" value="book" />
             <Tab label="Setting" value="setting" />
           </Tabs>
         </AppBar>
 
         <StyledDiv>
           <Switch>
-            {/* <Route path={`${match.url}/recite`} exact component={} /> */}
-            {/* <Route path={`${match.url}/review`} exact component={} /> */}
-            {/* <Route path={`${match.url}/setting`} exact component={} /> */}
-            <Route path={`${match.url}`} component={Home} />
+            <Route path='/recite' exact component={Recite} />
+            <Route path='/book' exact component={Book} />
+            <Route path='/setting' exact component={Setting} />
+            <Route path='/' component={Home} />
           </Switch>
         </StyledDiv>
       </MainContainer>

@@ -8,7 +8,10 @@ import {
   FormGroup,
 } from '@material-ui/core'
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(Button).attrs({
+  variant: "contained",
+  color: "primary",
+})`
   && {
     margin-top: 40px;
   }
@@ -60,7 +63,7 @@ export default class FormRegister extends React.Component {
             onChange={this.handleChange('password')}
             margin="normal"
           />
-          <StyledButton variant="contained" color="primary">
+          <StyledButton>
             Register
           </StyledButton>
         </FormGroup>
