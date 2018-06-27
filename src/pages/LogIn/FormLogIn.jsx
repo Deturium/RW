@@ -10,13 +10,13 @@ import {
   FormControlLabel
 } from '@material-ui/core'
 
-const ButtonV = styled(Button)`
+const StyledButton = styled(Button)`
   && {
     margin-top: 40px;
   }
 `
 
-export default class LoginForm extends React.Component {
+export default class FormLogIn extends React.Component {
 
   state = {
     username: '',
@@ -69,9 +69,9 @@ export default class LoginForm extends React.Component {
             }
             label="Remember me"
           />
-          <ButtonV variant="contained" color="primary">
+          <StyledButton variant="contained" color="primary">
             LOGIN
-          </ButtonV>
+          </StyledButton>
         </FormGroup>
       </form>
     )

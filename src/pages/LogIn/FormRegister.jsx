@@ -8,13 +8,13 @@ import {
   FormGroup,
 } from '@material-ui/core'
 
-const ButtonV = styled(Button)`
+const StyledButton = styled(Button)`
   && {
     margin-top: 40px;
   }
 `
 
-export default class extends React.Component {
+export default class FormRegister extends React.Component {
 
   state = {
     username: '',
@@ -60,9 +60,9 @@ export default class extends React.Component {
             onChange={this.handleChange('password')}
             margin="normal"
           />
-          <ButtonV variant="contained" color="primary">
+          <StyledButton variant="contained" color="primary">
             Register
-          </ButtonV>
+          </StyledButton>
         </FormGroup>
       </form>
     )
