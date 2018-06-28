@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'dva'
 
 import {
   Typography,
@@ -16,10 +17,13 @@ const StyleWrapperDiv = styled.div`
   align-items: center;
 `
 
-const StyledText = styled(Typography)`
-  && {
-    margin-bottom: 40px;
-  }
+const StyledWordDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  margin-bottom: 40px;
 `
 
 const StyledButton = styled(Button).attrs({
@@ -28,6 +32,7 @@ const StyledButton = styled(Button).attrs({
   && {
     min-width: 300px;
     margin: 5px 30px;
+    text-transform: none;
   }
 `
 
@@ -41,42 +46,57 @@ const StyledProgress = styled(ProgressDiv).attrs({
   margin-bottom: 80px;
 `
 
+@connect((state) => ({
+  reciteList: state.recite.reciteList,
+  progress: state.recite.progress,
+  isForget: state.recite.isForget,
+  reciteTotal: state.recite.reciteTotal,
+}))
 export default class Recite extends React.PureComponent {
 
-  state = {
-    reciteList: [
-
-    ],
-    forgetList: [
-
-    ],
-    progress: 3,
+  remember = () => {
+    this.props.dispatch({
+      type: 'recite/remember'
+    })
   }
 
-  remember = () => {
-    this.setState((prevState) => {
-      return {progress: prevState.progress + 1}
+  forget = () => {
+    const { reciteList, progress } = this.props
+
+    this.props.dispatch({
+      type: 'recite/forget',
+      payload: {
+        curWord: reciteList[progress]
+      }
     })
   }
 
   render() {
-    const { progress } = this.state
+    const { reciteList,  progress, reciteTotal, isForget } = this.props
 
     return (
       <StyleWrapperDiv>
-        <StyledText variant="display1" component="h2">
-          Recite
-        </StyledText>
+
+        <StyledWordDiv>
+          <Typography variant="display1" component="h2">
+            { reciteList[progress] || "- Yhaha -"}
+          </Typography>
+          {
+            isForget && <Typography variant="subheading" color="textSecondary" component="p">
+              { `${"[di’mɑ:nd] vt.要求;需要;询问"}` }
+            </Typography>
+          }
+        </StyledWordDiv>
 
         <StyledButton color="primary" onClick={this.remember}>
-          Yahaha, I know.
+          { !isForget ? "Yep, I already know." : "Ok, I know now." }
         </StyledButton>
         <StyledButton color="secondary" onClick={this.forget}>
-          Oh, I forget it.
+          { !isForget ? "Oh, I forget." : "Emm, add to book." }
         </StyledButton>
 
-        <Tooltip title={`${progress}/10`} placement="bottom" open={true}>
-          <StyledProgress value={ 100 * progress / 10} />
+        <Tooltip title={`${progress} / ${reciteTotal}`} placement="bottom" open={true}>
+          <StyledProgress value={ 100 * progress / reciteTotal} />
         </Tooltip>
       </StyleWrapperDiv>
     )

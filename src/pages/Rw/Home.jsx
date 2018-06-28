@@ -9,7 +9,7 @@ import {
   Button,
 } from '@material-ui/core'
 
-import IconDescription from '@material-ui/icons/Description'
+import { Description } from '@material-ui/icons'
 
 const StyleWrapperDiv = styled.div`
   display: flex;
@@ -19,7 +19,7 @@ const StyleWrapperDiv = styled.div`
   align-items: center;
 `
 
-const LogoIcon = styled(IconDescription).attrs({
+const LogoIcon = styled(Description).attrs({
   color: "error"
 })`
   && {
