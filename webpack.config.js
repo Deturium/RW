@@ -10,7 +10,7 @@ const commom = {
   },
 
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './egg/app/public'),
     publicPath: '/',
     filename: 'js/[name].js'
   },
@@ -69,7 +69,7 @@ if (process.env.NODE_ENV === 'production') {
     mode: "production",
 
     plugins: [
-      new CleanWebpackPlugin(['dist']),
+      new CleanWebpackPlugin(['egg/app/public']),
     ],
 
     optimization: {
