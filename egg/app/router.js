@@ -6,11 +6,17 @@
 module.exports = app => {
   const { router, controller } = app;
 
-  router.resources('user', '/api/v1/user', controller.user);
+  router.post('/api/v1/login', controller.user.login)
+  router.get('/api/v1/logout', controller.user.logout)
+  router.post('/api/v1/register', controller.user.register)
 
-  // router.resources('recite', '/api/v1/recite', controller.recite);
+  router.get('/api/v1/recite', controller.recite.list)
+  router.post('/api/v1/recite', controller.recite.create)
 
-  // router.resources('book', '/api/v1/book', controller.book);
+  router.get('/api/v1/book', controller.book.list)
+  router.post('/api/v1/book', controller.book.create)
+  router.del('/api/v1/book', controller.book.del)
 
-  router.get('/*', controller.default.index);
+  // 404 or index page
+  router.get('/*', controller.default.index)
 };

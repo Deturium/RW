@@ -1,17 +1,29 @@
 module.exports = app => {
-  const { STRING, INTEGER } = app.Sequelize;
+  const { Sequelize } = app;
 
   const User = app.model.define('User', {
-    username: STRING,
-    password: STRING,
+    username: {
+      type: Sequelize.STRING,
+      primaryKey: true,
+    },
+    password: Sequelize.STRING,
+    email: Sequelize.STRING,
   });
 
-  User.findByLogin = function* (username) {
-    return yield this.findOne({
+  User.findUser = async (username) => {
+    return await User.findOne({
       where: {
         username
       }
-    });
+    })
+  }
+
+  User.new = async (username, password, email) => {
+    return User.create({
+      username,
+      password,
+      email,
+    })
   }
 
   return User;
