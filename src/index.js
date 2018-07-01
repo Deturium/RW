@@ -16,6 +16,7 @@ const app = dva({
 // 3. Model
 app.model(require('./models/User').default);
 app.model(require('./models/Recite').default);
+app.model(require('./models/Book').default);
 
 // 4. Router
 app.router(require('./router').default)

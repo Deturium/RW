@@ -10,10 +10,11 @@ module.exports = app => {
     email: Sequelize.STRING,
   });
 
-  User.findUser = async (username) => {
+  User.findUser = async (username, password) => {
     return await User.findOne({
       where: {
-        username
+        username,
+        password,
       }
     })
   }

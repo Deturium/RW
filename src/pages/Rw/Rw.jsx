@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'dva'
 import { Switch, Route, withRouter } from 'dva/router'
 import urljoin from 'url-join'
 
@@ -22,6 +23,9 @@ const StyledDiv = styled.div`
 `
 
 @withRouter
+@connect((state) => ({
+  isLogin: state.user.isLogin,
+}))
 export default class extends React.PureComponent {
 
   state = {
@@ -40,23 +44,24 @@ export default class extends React.PureComponent {
 
   render() {
     const { tabValue } = this.state
+    const { isLogin } = this.props
 
     return (
       <MainContainer tabSize={4}>
         <AppBar position="static">
           <Tabs value={tabValue} centered onChange={this.handleTabChange}>
             <Tab label="Home" value="home" />
-            <Tab label="Recite" value="recite" />
-            <Tab label="Book" value="book" />
-            <Tab label="Setting" value="setting" />
+            { isLogin && <Tab label="Recite" value="recite" /> }
+            { isLogin && <Tab label="Book" value="book" /> }
+            { isLogin && <Tab label="Setting" value="setting" /> }
           </Tabs>
         </AppBar>
 
         <StyledDiv>
           <Switch>
-            <Route path='/recite' exact component={Recite} />
-            <Route path='/book' exact component={Book} />
-            <Route path='/setting' exact component={Setting} />
+            { isLogin && <Route path='/recite' exact component={Recite} /> }
+            { isLogin && <Route path='/book' exact component={Book} /> }
+            { isLogin && <Route path='/setting' exact component={Setting} /> }
             <Route path='/' component={Home} />
           </Switch>
         </StyledDiv>

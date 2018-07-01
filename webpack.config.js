@@ -60,6 +60,12 @@ if (process.env.NODE_ENV === 'development') {
       open: true,
       port: 8000,
       stats: 'errors-only',
+      proxy: {
+        "/api": {
+          target: "http://localhost:7001",
+          changeOrigin: true,
+        },
+      },
     },
   })
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'dva'
+import { withRouter } from 'dva/router'
 
 import {
   Button,
@@ -17,6 +19,8 @@ const StyledButton = styled(Button).attrs({
   }
 `
 
+@withRouter
+@connect()
 export default class FormRegister extends React.Component {
 
   state = {
@@ -29,6 +33,17 @@ export default class FormRegister extends React.Component {
     this.setState({
       [name]: event.target.value,
     })
+  }
+
+  registerHandle = () => {
+    this.props.dispatch({
+      type: "user/register",
+      payload: {
+        ...this.state
+      }
+    })
+
+    this.props.history.push('/login')
   }
 
   render() {
@@ -63,7 +78,7 @@ export default class FormRegister extends React.Component {
             onChange={this.handleChange('password')}
             margin="normal"
           />
-          <StyledButton>
+          <StyledButton onClick={this.registerHandle}>
             Register
           </StyledButton>
         </FormGroup>

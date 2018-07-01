@@ -4,7 +4,6 @@ const Controller = require('egg').Controller;
 class ReciteController extends Controller {
 
   async list() {
-
     const offset = await this.ctx.model.Record.cnt('melody');
 
     const ret = await this.ctx.model.Word.findAll({
@@ -20,11 +19,11 @@ class ReciteController extends Controller {
 
 
   async create() {
-    const ret = await this.ctx.model.Record.new('melody', 4);
+    const { id } = this.ctx.request.body;
+    const ret = await this.ctx.model.Record.new('melody', id);
 
     this.ctx.body = ret;
   }
-
 }
 
 module.exports = ReciteController;

@@ -1,5 +1,6 @@
 import React from 'react'
 // import styled from 'styled-components'
+import { connect } from 'dva'
 
 
 import {
@@ -16,35 +17,45 @@ import {
 } from '@material-ui/icons'
 
 
-function generate(element) {
-  return [0, 1, 2].map(value =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
-}
-
+@connect((state) => ({
+  wordList: state.book.wordList
+}))
 export default class Book extends React.PureComponent {
+
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'book/getWordList'
+    })
+  }
+
+  deleteHandle = (id) => {
+    this.props.dispatch({
+      type: 'book/delWord',
+      payload: {
+        id
+      }
+    })
+  }
 
   render() {
     return (
-      <>
-        <List dense={false}>
-          {generate(
-            <ListItem button>
+      <List dense={false}>
+        {
+          this.props.wordList.map((word) =>
+            <ListItem key={word.id} button>
               <ListItemText
-                primary="Recite"
-                secondary={'Secondary text'}
+                primary={word.word}
+                secondary={word.translate}
               />
               <ListItemSecondaryAction>
-                <IconButton>
+                <IconButton onClick={() => this.deleteHandle(word.id)}>
                   <Delete />
                 </IconButton>
               </ListItemSecondaryAction>
-            </ListItem>,
-          )}
-        </List>
-      </>
+            </ListItem>
+          )
+        }
+      </List>
     )
   }
 }

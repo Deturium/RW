@@ -24,7 +24,8 @@ module.exports = app => {
     return await Book.findAll({
       where: {
         username,
-      }
+      },
+      attributes: ['id'],
     });
   }
 

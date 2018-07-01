@@ -54,14 +54,34 @@ const StyledProgress = styled(ProgressDiv).attrs({
 }))
 export default class Recite extends React.PureComponent {
 
-  remember = () => {
+  componentDidMount() {
     this.props.dispatch({
-      type: 'recite/remember'
+      type: 'recite/getRecite'
+    })
+  }
+
+  remember = () => {
+    const { reciteList, progress } = this.props
+    this.props.dispatch({
+      type: 'recite/remember',
+      payload: {
+        id: reciteList[progress].id
+      }
     })
   }
 
   forget = () => {
-    const { reciteList, progress } = this.props
+    const { reciteList, progress, isForget } = this.props
+
+    if (isForget) {
+      this.props.dispatch({
+        type: 'recite/addToBook',
+        payload: {
+          id: reciteList[progress].id
+        }
+      })
+      return
+    }
 
     this.props.dispatch({
       type: 'recite/forget',
@@ -74,16 +94,20 @@ export default class Recite extends React.PureComponent {
   render() {
     const { reciteList,  progress, reciteTotal, isForget } = this.props
 
+    const word = reciteList[progress] || {
+      word: "- Yhaha -"
+    }
+
     return (
       <StyleWrapperDiv>
 
         <StyledWordDiv>
           <Typography variant="display1" component="h2">
-            { reciteList[progress] || "- Yhaha -"}
+            { word.word }
           </Typography>
           {
             isForget && <Typography variant="subheading" color="textSecondary" component="p">
-              { `${"[di’mɑ:nd] vt.要求;需要;询问"}` }
+              { word.translate }
             </Typography>
           }
         </StyledWordDiv>

@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'dva'
+import { withRouter } from 'dva/router'
 
 import {
   Button,
@@ -19,6 +21,8 @@ const StyledButton = styled(Button).attrs({
   }
 `
 
+@withRouter
+@connect()
 export default class FormLogIn extends React.Component {
 
   state = {
@@ -36,6 +40,18 @@ export default class FormLogIn extends React.Component {
   handleRemeber = () => {
     this.setState({
       isRemember: !this.state.isRemember
+    })
+  }
+
+  loginHandle = () => {
+    this.props.dispatch({
+      type: 'user/logIn',
+      payload: {
+        ...this.state,
+        callback: () => {
+          this.props.history.push('/home')
+        }
+      }
     })
   }
 
@@ -72,7 +88,7 @@ export default class FormLogIn extends React.Component {
             }
             label="Remember me"
           />
-          <StyledButton>
+          <StyledButton onClick={this.loginHandle}>
             LOGIN
           </StyledButton>
         </FormGroup>
